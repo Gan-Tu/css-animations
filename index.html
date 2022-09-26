@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title></title>
+    <style>
+      main {
+        padding: 30px;
+        width: 300px;
+      }
+      .result {
+        overflow: hidden;
+        text-align: center;
+        display: flex;
+        margin-bottom: 10px;
+        background-color: rgb(66, 223, 58);
+        height: 50px;
+      }
+      .marquee {
+        flex-grow: 1;
+        padding: 10px;
+        align-items: center;
+        justify-items: center;
+      }
+      .marquee > img {
+        object-fit: cover;
+        max-height: 30px;
+      }
+      @keyframes scroll {
+        0% {
+          transform: translateX(100%);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      @keyframes vertical-scroll {
+        0% {
+          transform: translateY(-100%);
+        }
+        100% {
+          transform: translateY(100%);
+        }
+      }
+      @keyframes spin {
+        0% {
+          transform: rotateY(0deg);
+        }
+        100% {
+          transform: rotateY(360deg);
+        }
+      }
+      @keyframes vertical-spin {
+        0% {
+          transform: rotateX(0deg);
+        }
+        100% {
+          transform: rotateX(360deg);
+        }
+      }
+      @keyframes rotate {
+        0% {
+          transform: rotateZ(0deg);
+        }
+        100% {
+          transform: rotateZ(360deg);
+        }
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(-25%);
+          animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+        }
+        50% {
+          transform: translateY(0);
+          animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+        }
+      }
+      @keyframes horizontal-bounce {
+        0% {
+          transform: translateX(-50%);
+        }
+        100% {
+          transform: translateX(50%);
+        }
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.2;
+        }
+      }
+      @keyframes ping {
+        75%,
+        100% {
+          transform: scale(2);
+          opacity: 0;
+        }
+      }
+      .scroll {
+        animation: scroll 3s linear infinite;
+      }
+      .scroll.vertical {
+        animation-name: vertical-scroll;
+      }
+      .spin {
+        animation: spin 3s linear infinite;
+      }
+      .spin.vertical {
+        animation-name: vertical-spin;
+      }
+      .rotate {
+        animation: rotate 3s linear infinite;
+      }
+      .bounce {
+        animation: bounce 1s linear infinite;
+      }
+      .horizontal-bounce {
+        transform: translateX(50%);
+        animation: horizontal-bounce 3s linear infinite alternate;
+      }
+      .pulse {
+        animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      .ping {
+        animation: ping 1s cubic-bezier(0, 0, 0.2, 1) infinite;
+      }
+      *.animate-reverse {
+        animation-direction: reverse;
+      }
+      *.animate-alternate {
+        animation-direction: alternate;
+      }
+      *.animate-alternate-reverse {
+        animation-direction: alternate-reverse;
+      }
+      .duration-1s {
+        animation-duration: 1s;
+      }
+      .duration-2s {
+        animation-duration: 2s;
+      }
+      .duration-3s {
+        animation-duration: 3s;
+      }
+      .duration-4s {
+        animation-duration: 4s;
+      }
+      .duration-5s {
+        animation-duration: 5s;
+      }
+      .duration-6s {
+        animation-duration: 10s;
+      }
+      .duration-7s {
+        animation-duration: 7s;
+      }
+      .duration-8s {
+        animation-duration: 8s;
+      }
+      .duration-9s {
+        animation-duration: 9s;
+      }
+      .duration-10s {
+        animation-duration: 10s;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="result">
+        <div class="marquee scroll">Scroll RTL</div>
+      </div>
+      <div class="result">
+        <div class="marquee scroll animate-reverse">Scroll LTR</div>
+      </div>
+      <div class="result">
+        <div class="marquee scroll vertical">Scroll Down</div>
+      </div>
+      <div class="result">
+        <div class="marquee scroll vertical animate-reverse">Scroll Up</div>
+      </div>
+      <div class="result">
+        <div class="marquee bounce">Bounce</div>
+      </div>
+      <div class="result">
+        <div class="marquee horizontal-bounce">LTR bounce</div>
+      </div>
+      <div class="result">
+        <div class="marquee horizontal-bounce animate-alternate-reverse">
+          RTL bounce
+        </div>
+      </div>
+      <div class="result">
+        <div class="marquee pulse">Pulse</div>
+      </div>
+      <div class="result">
+        <div class="marquee ping">Ping</div>
+      </div>
+      <div class="result">
+        <div class="marquee ping animate-reverse">Ping Reverse</div>
+      </div>
+      <div class="result">
+        <div class="marquee spin">Spin Horizontally</div>
+      </div>
+      <div class="result">
+        <div class="marquee spin vertical">Spin Verically</div>
+      </div>
+      <div class="result">
+        <div class="marquee rotate">Spin Clockwise</div>
+      </div>
+      <div class="result">
+        <div class="marquee rotate animate-reverse">Spin Counter-Clockwise</div>
+      </div>
+      <div class="result">
+        <div class="marquee horizontal-bounce duration-2s">
+          <img
+            src="https://media0.giphy.com/media/Q944waWqmYNYHA1rND/giphy.gif"
+          />
+        </div>
+      </div>
+      <div class="result">
+        <div class="marquee bounce">
+          <img
+            src="https://media0.giphy.com/media/Q944waWqmYNYHA1rND/giphy.gif"
+          />
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
