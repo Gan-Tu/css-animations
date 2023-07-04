@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Button - Wavy</title>
+    <meta name="description" content />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+
+      body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        background-color: #222;
+
+        --ocean-blue: #00aeff;
+      }
+
+      a {
+        text-decoration: none;
+        padding: 15px 30px;
+        color: var(--ocean-blue);
+        font-size: 18px;
+        letter-spacing: 3px;
+        border: 2px solid var(--ocean-blue);
+        text-transform: uppercase;
+        position: relative;
+        overflow: hidden;
+        transition: all 1s;
+      }
+
+      a:hover {
+        cursor: pointer;
+        color: white;
+      }
+
+      .wave {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: calc(100% + 22px);
+        background-color: var(--ocean-blue);
+        transition: all 1s;
+        z-index: -1;
+      }
+
+      a:hover .wave {
+        top: 0;
+      }
+
+      .wave:before {
+        content: "";
+        position: absolute;
+        top: -22px;
+        left: 0;
+        width: 100%;
+        height: 22px;
+        background: url(wave.png);
+        animation: wavy 0.5s linear infinite;
+      }
+
+      @keyframes wavy {
+        0% {
+          background-position-x: 0;
+        }
+        100% {
+          background-position-x: 118px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a
+      >Submit
+      <div class="wave"></div
+    ></a>
+  </body>
+</html>
