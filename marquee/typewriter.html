@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Typewriter</title>
+    <style>
+      .typewriter-container {
+        position: relative;
+        width: 300px;
+        height: 60px;
+        overflow: hidden;
+        font-family: monospace;
+        font-size: 18px;
+        line-height: 1.5em;
+      }
+
+      .typewriter-line {
+        position: absolute;
+        white-space: nowrap;
+        opacity: 0;
+        transform: translateY(0);
+        transition: all 0.8s ease-in-out;
+      }
+
+      .typewriter-line.visible {
+        opacity: 1;
+      }
+
+      .typewriter-line.move-up {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="typewriter-container"></div>
+
+    <script>
+      const lines = [
+        "Hello, world!",
+        "This is the second line.",
+        "Here comes the third..."
+      ];
+
+      function startTypewriter(lines) {
+        const container = document.querySelector(".typewriter-container");
+        let currentLineIndex = 0;
+
+        function typeLine(lineText) {
+          return new Promise((resolve) => {
+            const lineElem = document.createElement("div");
+            lineElem.className = "typewriter-line";
+            container.appendChild(lineElem);
+
+            let charIndex = 0;
+            lineElem.classList.add("visible");
+
+            function typeChar() {
+              if (charIndex < lineText.length) {
+                lineElem.textContent += lineText.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, 100); // Adjust typing speed as needed
+              } else {
+                // Done typing this line
+                resolve(lineElem);
+              }
+            }
+
+            typeChar();
+          });
+        }
+
+        function showNextLine() {
+          if (currentLineIndex < lines.length) {
+            typeLine(lines[currentLineIndex]).then((lineElem) => {
+              // Wait 1 second after finishing typing
+              setTimeout(() => {
+                // Animate line moving up
+                lineElem.classList.add("move-up");
+                // Once transition finishes
+                lineElem.addEventListener(
+                  "transitionend",
+                  () => {
+                    lineElem.remove();
+                    currentLineIndex++;
+                    showNextLine();
+                  },
+                  { once: true }
+                );
+              }, 1000);
+            });
+          } else {
+            // Finished all lines, start again from the beginning
+            currentLineIndex = 0;
+            showNextLine();
+          }
+        }
+
+        showNextLine();
+      }
+
+      // Start the animation
+      startTypewriter(lines);
+    </script>
+  </body>
+</html>
